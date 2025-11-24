@@ -12,7 +12,6 @@ namespace CraftSharp.Rendering
         [SerializeField] private Light sunLight;
         [SerializeField] private AnimationCurve lightIntensity;
         [SerializeField] private AnimationCurve fogBlendFactor;
-        [SerializeField] private AtmosphericHeightFog.HeightFogGlobal heightFog;
 
         [SerializeField] private long startTime;
         [SerializeField] private bool updateEnvLighting = false;
@@ -124,11 +123,6 @@ namespace CraftSharp.Rendering
             if (sunLight)
             {
                 sunLight.intensity = lightIntensity.Evaluate(normalizedTOD);
-            }
-
-            if (heightFog)
-            {
-                heightFog.timeOfDay = fogBlendFactor.Evaluate(normalizedTOD);
             }
 
             if (updateEnvLighting && Mathf.Abs(Mathf.DeltaAngle(normalizedTOD * 360F, lastUpdateEnvLightingTODAngle)) > 12F) // Time for an update!
